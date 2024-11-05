@@ -4,11 +4,25 @@ import { client } from "./client"
 
 /**
  * Funcion para obtener la lista de todos los usuarios
+ * @param limit Cantidad de usuarios que se quieren obtener
+ * @param page Cantidad de usuarios que se quieren obtener
+ * @param search Busqueda de usuarios
  * @returns listado de usuarios
  */
-export const getUserslist = async (): Promise<ResponseAPI> => {
+export const getUserslist = async (
+    limit: number = 10, 
+    page: number = 0, 
+    search: string = ""
+): Promise<ResponseAPI> => {
 
-    const response = await (await client.get('/v1/users')).data
+    const response = await (await client.get('/v1/users', 
+    { 
+        params: { 
+            limit, 
+            page,
+            search 
+        } 
+    })).data
     
     return response;
     
