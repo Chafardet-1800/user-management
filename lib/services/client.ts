@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const client = axios.create({
-    baseURL: "http://localhost:3001"
+    baseURL: import.meta.env.BASE_URL || "http://localhost:3000",
 })

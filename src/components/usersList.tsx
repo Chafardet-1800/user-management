@@ -23,10 +23,12 @@ const UsersList = ({
   list,
   refresh,
   pagination,
+  count,
 }: {
   list: User[] | null;
   refresh: () => void;
   pagination: (page: number, limit: number, search: string) => void;
+  count: number;
 }) => {
   /**
    * Modelo del dialogo
@@ -264,7 +266,7 @@ const UsersList = ({
    */
   const [page, setPage] = useState(0);
   const [search, setSearch] = useState("");
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   // Funcion para cambiar la busqueda
   const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -441,10 +443,11 @@ const UsersList = ({
               >
                 <TablePagination
                   component="div"
-                  count={100}
+                  count={count}
                   page={page}
                   onPageChange={handleChangePage}
                   rowsPerPage={rowsPerPage}
+                  rowsPerPageOptions={[5, 10, 20]}
                   onRowsPerPageChange={handleChangeRowsPerPage}
                 />
               </td>

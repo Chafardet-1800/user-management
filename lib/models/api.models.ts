@@ -1,7 +1,7 @@
 export interface ResponseAPI {
     apiVersion:   string;
     trackingCode: string;
-    data:         unknown;
+    data:         never;
     message:      string;
     maintenance:  boolean;
     date:         number;

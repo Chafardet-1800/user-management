@@ -10,7 +10,7 @@ import { client } from "./client"
  * @returns listado de usuarios
  */
 export const getUserslist = async (
-    limit: number = 10, 
+    limit: number = 5, 
     page: number = 0, 
     search: string = ""
 ): Promise<ResponseAPI> => {

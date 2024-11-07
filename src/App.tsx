@@ -12,10 +12,12 @@ function App() {
   const [pagination, setPagination] = useState<{
     page: number;
     limit: number;
+    count: number;
     search: string;
   }>({
     page: 0,
-    limit: 10,
+    limit: 5,
+    count: 0,
     search: "",
   });
 
@@ -26,8 +28,14 @@ function App() {
       // La solicitamos a la API
       getUserslist(pagination.limit, pagination.page, pagination.search).then(
         (response) => {
+          const result: { rows: User[]; count: number } = response.data;
+
+          setPagination({
+            ...pagination,
+            count: result.count,
+          });
           // Almacenamos la lista de usuarios
-          setUsersList([...(response.data as User[])]);
+          setUsersList([...(result.rows as User[])]);
         }
       );
     }
@@ -40,7 +48,12 @@ function App() {
 
   // Funcion para recargar la lista de usuarios
   const changePage = (page: number, limit: number, search: string) => {
-    setPagination({ page, limit, search });
+    setPagination({
+      ...pagination,
+      page,
+      limit,
+      search,
+    });
     setUsersList(null);
   };
 
@@ -58,6 +71,7 @@ function App() {
         list={usersList}
         refresh={refreshList}
         pagination={changePage}
+        count={pagination.count}
       />
     </div>
   );
