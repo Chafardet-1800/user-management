@@ -29,7 +29,7 @@ const CustomInput = ({
       defaultValue={value}
       required={required}
       className={`
-        h-20 bg-transparent border-b text-2xl self-center focus:outline-none rounded-md
+        h-15 bg-transparent border-b text-xl self-center focus:outline-none rounded-md
         ${fullWidth ? "w-full" : width ? width : "w-4/5"} 
         ${disable && "opacity-50 cursor-default"}
       `}
