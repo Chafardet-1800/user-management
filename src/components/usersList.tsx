@@ -240,6 +240,8 @@ const UsersList = ({
       return;
     }
 
+    if (!event) return;
+
     setOpen(false);
   };
 
@@ -276,6 +278,7 @@ const UsersList = ({
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
   ) => {
+    if (!event) return;
     setPage(newPage);
     pagination(newPage, rowsPerPage, "");
   };
